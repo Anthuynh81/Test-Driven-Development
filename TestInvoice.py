@@ -38,3 +38,7 @@ def test_InputNumber(invoice, input_value):
 def test_TaxToBePaid(invoice, products):
     invoice.taxToBePaid(products)
     assert invoice.taxToBePaid(products) == 4.86
+    
+def test_InputAnswer(invoice, input_answer):
+    with mock.patch('builtins.input', return_value=input_answer):
+    assert invoice.inputAnswer(input_answer) == "y"
