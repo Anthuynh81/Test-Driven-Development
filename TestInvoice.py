@@ -1,5 +1,6 @@
 import pytest
 from Invoice import Invoice
+import mock
 
 
 @pytest.fixture()
@@ -13,6 +14,11 @@ def invoice():
     invoice = Invoice()
     return invoice
 
+@pytest.fixture()
+def input_value():
+    input_value = 54
+    return input_value
+
 def test_CanCalculateTotalImpurePrice(invoice, products):
     invoice.totalImpurePrice(products)
     assert invoice.totalImpurePrice(products) == 75
@@ -24,3 +30,7 @@ def test_CanCalculateTotalDiscount(invoice, products):
 def test_CanCalculateTotalPurePrice(invoice, products):
     invoice.totalPurePrice(products)
     assert invoice.totalPurePrice(products) == 69.38
+
+def test_InputNumber(invoice, input_value):
+    with mock.patch('builtins.input', return_value=input_value):
+        assert invoice.inputNumber(input_value) == 54
