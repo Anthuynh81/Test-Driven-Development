@@ -15,9 +15,14 @@ def invoice():
     return invoice
 
 @pytest.fixture()
-def input_value():
-    input_value = 54
-    return input_value
+def input_number():
+    input_number = 54
+    return input_number
+
+@pytest.fixture()
+def input_answer():
+    input_answer = "y"
+    return input_answer
 
 def test_CanCalculateTotalImpurePrice(invoice, products):
     invoice.totalImpurePrice(products)
@@ -31,9 +36,9 @@ def test_CanCalculateTotalPurePrice(invoice, products):
     invoice.totalPurePrice(products)
     assert invoice.totalPurePrice(products) == 69.38
 
-def test_InputNumber(invoice, input_value):
-    with mock.patch('builtins.input', return_value=input_value):
-        assert invoice.inputNumber(input_value) == 54
+def test_InputNumber(invoice, input_number):
+    with mock.patch('builtins.input', return_value=input_number):
+        assert invoice.inputNumber(input_number) == 54
 
 def test_TaxToBePaid(invoice, products):
     invoice.taxToBePaid(products)
@@ -41,4 +46,4 @@ def test_TaxToBePaid(invoice, products):
     
 def test_InputAnswer(invoice, input_answer):
     with mock.patch('builtins.input', return_value=input_answer):
-    assert invoice.inputAnswer(input_answer) == "y"
+        assert invoice.inputAnswer(input_answer) == "y"
