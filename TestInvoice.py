@@ -34,3 +34,7 @@ def test_CanCalculateTotalPurePrice(invoice, products):
 def test_InputNumber(invoice, input_value):
     with mock.patch('builtins.input', return_value=input_value):
         assert invoice.inputNumber(input_value) == 54
+
+def test_TaxToBePaid(invoice, products):
+    invoice.taxToBePaid(products)
+    assert invoice.taxToBePaid(products) == 4.86

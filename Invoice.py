@@ -27,6 +27,9 @@ class Invoice:
     def totalPurePrice(self, products):
         total_pure_price = self.totalImpurePrice(products) - self.totalDiscount(products)
         return total_pure_price
+    
+    def taxToBePaid(self, products):
+        return round((self.totalPurePrice(products) * .07), 2)
 
     def inputAnswer(self, input_value):
         while True:
